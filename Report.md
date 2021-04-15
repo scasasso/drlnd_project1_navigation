@@ -8,7 +8,7 @@ In essence, the DQN approach consists of the following tasks:
    where `S` is the current state, `A` is the action taken following the policy, `R` is the reward obtain 
    and `S'` is the new state.  
 2) Periodically (randomly) sample from the buffer a set of experiences and use them to update the 
-   target network (_Experience Replay_) using gradient descent. 
+   target network (_Experience Replay_) using gradient descent.
    
 The DQN algorithm allows to break the correlation between consecutive experiences and largely reduces
 the correlation with the target by updating only periodically.
@@ -25,11 +25,14 @@ The (hyper-)parameters used are the followings:
 - `LR=5e-4`: learning rate used for the gradient descent step
 - `UPDATE_EVERY=4`: how often the target network is updated
 - `GAMMA=0.99`: discount factor
+- `BUFFER_SIZE=1e5`: total size of the experience buffer
+- `TAU=1e-3`: smoothing factor used for the soft update of the target network, according to the formula
+`w_i,target = τ * w_i,local + (1 - τ) * w_i,target`
 
 
 
 ### Results
-Our implementation solves the Banana environment (i.e. average reward (over 100 episodes) >= +13) in __570 episodes__. 
+Our implementation solves the Banana environment (i.e. average reward (over 100 episodes) >= +13) in __670 episodes__. 
 The best average score achieved is __+15__, reached after ~1900 episodes.
 
 ![blabla](score_vs_episode.png "Episode score as a function of the episode number")
